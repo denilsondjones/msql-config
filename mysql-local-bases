@@ -19,7 +19,7 @@ cp -r /var/lib/mysql /dados/mysql/
 
 Passo 4: Ajustar as permissões.
 
-chow mysql:mysql /dados/mysql/
+chown mysql:mysql /dados/mysql/
 chmod -R 750 /dados/mysql/
 
 Passo 5: Reiniciar o Ubuntu (Passo obrigatório para aplicar as permissões do AppArmor )
