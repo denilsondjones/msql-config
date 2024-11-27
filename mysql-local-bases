@@ -1,0 +1,24 @@
+## Configuração do Banco MySql Linux para armazenar bases em outra unidade ##
+
+Passo 1: Adicionar o novos local.
+sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf
+datadir  =/dados/mysql
+
+Passo 2: Adicionar a permissão no AppArmor.
+sudo vi /etc/apparmor.d/usr.sbin.mysqld
+
+# Procure a linha "# Allow data dir access" e adicione o novo local de armazenamento.
+
+/dados/mysql/ r,
+/dados/mysql/** rwk,
+
+Passo 3: Copiar todos os arquivos do diretórios atual para o novo.
+cp -r /var/lib/mysql /dados/mysql/
+
+Passo 4: Ajustar as permições.
+
+chow mysql:mysql /dados/mysql/
+chmod -R 750 /dados/mysql/
+
+Passo 5: Reiniciar o Ubuntu (Passo obrigatio para aplicar as permições do AppArmor )
+sudo reboot now
