@@ -15,7 +15,7 @@ sudo vi /etc/apparmor.d/usr.sbin.mysqld
 /dados/mysql/** rwk,
 
 Passo 3: Copiar todos os arquivos do diretório atual para o novo.
-cp -r /var/lib/mysql /dados/mysql/
+cp -r /var/lib/mysql/* /dados/mysql/
 
 Passo 4: Ajustar as permissões.
 
